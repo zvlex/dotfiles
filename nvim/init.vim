@@ -15,6 +15,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'TimUntersberger/neogit'
 Plug 'sindrets/diffview.nvim'
 
+" Search
+Plug 'dyng/ctrlsf.vim'
+
 " HTTP
 Plug 'NTBBloodbath/rest.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -28,6 +31,7 @@ Plug 'numToStr/Comment.nvim'
 
 " Theme
 Plug 'sainnhe/gruvbox-material'
+Plug 'joshdick/onedark.vim'
 
 " Navigation
 Plug 'ibhagwan/fzf-lua'
@@ -38,6 +42,7 @@ Plug 'blackcauldron7/surround.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'tpope/vim-abolish'
 
 " Programming Languages
 Plug 'tpope/vim-rails'
@@ -50,11 +55,19 @@ Plug 'elixir-editors/vim-elixir'
 
 Plug 'ap/vim-css-color'
 
+Plug 'dart-lang/dart-vim-plugin'
+" Plug 'thosakwe/vim-flutter'
+Plug 'akinsho/flutter-tools.nvim'
+
 call plug#end()
+
+let mapleader=","
 
 set completeopt=menu,menuone,noselect
 
 lua <<EOF
+require("flutter-tools").setup{}
+
 local nvim_lsp = require('lspconfig')
 
 -- Use an on_attach function to only map the following keys
@@ -224,7 +237,7 @@ require'nvim-tree'.setup {
     timeout = 500,
   },
   view = {
-    width = 30,
+    width = 35,
     height = 30,
     hide_root_folder = false,
     side = 'left',
@@ -299,7 +312,7 @@ EOF
 set nocompatible
 
 set number
-colorscheme gruvbox-material
+colorscheme onedark
 set cursorline
 set colorcolumn=120
 
@@ -327,7 +340,8 @@ syntax enable
 set confirm
 
 
-let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+let g:ctrlsf_backend = 'rg'
+
 let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_highlight_opened_files = 1 "0 by default, will enable folder and file icon highlight for opened files/directories.
@@ -337,7 +351,6 @@ let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contai
 let g:nvim_tree_disable_window_picker = 1 "0 by default, will disable the window picker.
 let g:nvim_tree_icon_padding = ' ' "one space by default, used for rendering the space between the icon and the filename. Use with caution, it could break rendering if you set an empty string depending on your font.
 let g:nvim_tree_symlink_arrow = ' >> ' " defaults to ' ➛ '. used as a separator between symlinks' source and target.
-let g:nvim_tree_respect_buf_cwd = 1 "0 by default, will change cwd of nvim-tree to that of new buffer's when opening nvim-tree.
 let g:nvim_tree_create_in_closed_folder = 0 "1 by default, When creating files, sets the path of a file when cursor is on a closed folder to the parent folder when 0, and inside the folder when 1.
 let g:nvim_tree_refresh_wait = 500 "1000 by default, control how often the tree can be refreshed, 1000 means the tree can be refresh once per 1000ms.
 let g:nvim_tree_window_picker_exclude = {
@@ -401,3 +414,19 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 
 " a list of groups can be found at `:help nvim_tree_highlight`
 highlight NvimTreeFolderIcon guibg=blue
+
+
+noremap ,h :split<CR>
+noremap ,v :vsplit<CR>
+
+" no one is really happy until you have this shortcuts
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
