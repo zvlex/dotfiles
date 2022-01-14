@@ -36,6 +36,7 @@ Plug 'joshdick/onedark.vim'
 " Navigation
 Plug 'ibhagwan/fzf-lua'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'pechorin/any-jump.vim'
 
 " Editing
 Plug 'blackcauldron7/surround.nvim'
@@ -43,21 +44,32 @@ Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-abolish'
+Plug 'powerman/vim-plugin-ruscmd'
 
-" Programming Languages
+"" Programming Languages and markup
+
+" Ruby
 Plug 'tpope/vim-rails'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-bundler'
+
+" HAML
 Plug 'tpope/vim-haml'
 
+" Markdown
+Plug 'tpope/vim-markdown'
+
+" Elixir
 Plug 'elixir-editors/vim-elixir'
 
+" CSS
 Plug 'ap/vim-css-color'
 
+" Dart
 Plug 'dart-lang/dart-vim-plugin'
-" Plug 'thosakwe/vim-flutter'
 Plug 'akinsho/flutter-tools.nvim'
+
 
 call plug#end()
 
