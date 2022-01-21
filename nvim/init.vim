@@ -32,6 +32,7 @@ Plug 'numToStr/Comment.nvim'
 " Theme
 Plug 'sainnhe/gruvbox-material'
 Plug 'joshdick/onedark.vim'
+Plug 'cocopon/iceberg.vim'
 
 " Navigation
 Plug 'ibhagwan/fzf-lua'
@@ -45,6 +46,7 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'tpope/vim-abolish'
 Plug 'powerman/vim-plugin-ruscmd'
+Plug 'bronson/vim-trailing-whitespace'
 
 "" Programming Languages and markup
 
@@ -65,6 +67,9 @@ Plug 'elixir-editors/vim-elixir'
 
 " CSS
 Plug 'ap/vim-css-color'
+
+" JavaScript
+Plug 'pangloss/vim-javascript'
 
 " Dart
 Plug 'dart-lang/dart-vim-plugin'
@@ -324,6 +329,7 @@ EOF
 set nocompatible
 
 set number
+" colorscheme gruvbox-material
 colorscheme onedark
 set cursorline
 set colorcolumn=120
@@ -426,6 +432,7 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 
 " a list of groups can be found at `:help nvim_tree_highlight`
 highlight NvimTreeFolderIcon guibg=blue
+autocmd FileType javascript setl sw=4 sw=4 sts=4
 
 
 noremap ,h :split<CR>
