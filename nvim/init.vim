@@ -33,6 +33,11 @@ Plug 'numToStr/Comment.nvim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'joshdick/onedark.vim'
 Plug 'cocopon/iceberg.vim'
+Plug 'vim-scripts/railscasts'
+Plug 'lukaszkorecki/RailsCastsThemeHack'
+
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " Navigation
 Plug 'ibhagwan/fzf-lua'
@@ -128,8 +133,8 @@ for _, lsp in ipairs(servers) do
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
+    },
     }
-  }
 end
 
 -- Setup nvim-cmp.
@@ -313,13 +318,20 @@ require'nvim-treesitter.configs'.setup {
   }
 }
 
-require"surround".setup{}
-
 local neogit = require("neogit")
 
 neogit.setup {
   integrations = {
     diffview = true
+  }
+}
+
+require"surround".setup {mappings_style = "surround"}
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'codedark',
   }
 }
 EOF
@@ -330,7 +342,9 @@ set nocompatible
 
 set number
 " colorscheme gruvbox-material
-colorscheme onedark
+" colorscheme onedark
+" colorscheme railscasts
+colorscheme railscasts2_hack
 set cursorline
 set colorcolumn=120
 
@@ -356,7 +370,8 @@ set nowrap
 
 syntax enable
 set confirm
-
+set foldmethod=syntax
+set foldlevel=99
 
 let g:ctrlsf_backend = 'rg'
 
