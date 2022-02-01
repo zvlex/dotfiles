@@ -92,6 +92,14 @@ require("flutter-tools").setup{}
 
 local nvim_lsp = require('lspconfig')
 
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = false,
+  underline = false,
+  update_in_insert = false,
+  severity_sort = false,
+})
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -347,6 +355,7 @@ set number
 colorscheme railscasts2_hack
 set cursorline
 set colorcolumn=120
+highlight ColorColumn guibg=gray20
 
 " General
 set history=1000
