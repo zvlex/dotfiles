@@ -45,7 +45,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'pechorin/any-jump.vim'
 
 " Editing
-Plug 'blackcauldron7/surround.nvim'
+Plug 'ur4ltz/surround.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
