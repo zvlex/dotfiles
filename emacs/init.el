@@ -13,7 +13,7 @@
  ;; If there is more than one, they won't work right.
  '(global-visual-line-mode t)
  '(package-selected-packages
-   '(try diff-hl dotenv-mode multiple-cursors treemacs-magit yaml-mode move-text projectile-rails treemacs-projectile which-key projectile lsp-mode mentor whitespace-cleanup-mode magit smartparens company-ctags company ivy elixir-mode eglot)))
+   '(bundler exec-path-from-shell rspec-mode try diff-hl dotenv-mode multiple-cursors treemacs-magit yaml-mode move-text projectile-rails treemacs-projectile which-key projectile lsp-mode mentor whitespace-cleanup-mode magit smartparens company-ctags company ivy elixir-mode eglot)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,12 +29,6 @@
 
 (tool-bar-mode -1)
 
-(defun set-eshell-path-from-asdf ()
-  "Set eshell's PATH from asdf's environment variables."
-  (let ((shims-path (concat (getenv "HOME") "/.asdf/shims")))
-    (setq eshell-path-env (concat shims-path ":" eshell-path-env))))
-
-(add-hook 'eshell-mode-hook #'set-eshell-path-from-asdf)
 
 ;; Disable extra files
 (setq make-backup-files         nil) ; Don't want any backup files
@@ -51,6 +45,14 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; Load PATH
+(use-package exec-path-from-shell
+  :ensure t
+  :config
+  (when (memq window-system '(mac ns x))
+    (setq exec-path-from-shell-shell-name "/bin/zsh")
+    (exec-path-from-shell-initialize)))
 
 ;; Autocomplete
 (use-package company
@@ -92,6 +94,7 @@
   :after (treemacs projectile)
   :ensure t)
 
+;; Ruby
 (use-package projectile-rails
   :ensure t
   :after projectile
@@ -99,6 +102,19 @@
   ("C-c r" . projectile-rails-command-map)
   :config
   (projectile-rails-global-mode))
+
+
+(use-package rspec-mode
+  :ensure t
+  :init
+  (add-hook 'ruby-mode-hook #'rspec-mode)
+  :bind (:map rspec-mode-map
+   ("C-c t" . rspec-verify))
+  :config
+  (setq compilation-scroll-output t))
+
+(use-package bundler
+  :ensure t)
 
 (use-package which-key
   :ensure t
