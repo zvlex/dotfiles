@@ -13,7 +13,7 @@
  ;; If there is more than one, they won't work right.
  '(global-visual-line-mode t)
  '(package-selected-packages
-   '(projectile-phoenix quelpa-use-package use-package-quelpa comment-dwim-2 bundler exec-path-from-shell rspec-mode try diff-hl dotenv-mode multiple-cursors treemacs-magit yaml-mode move-text projectile-rails treemacs-projectile which-key projectile lsp-mode mentor whitespace-cleanup-mode magit smartparens company-ctags company ivy elixir-mode eglot)))
+   '(darktooth-theme projectile-phoenix quelpa-use-package use-package-quelpa comment-dwim-2 bundler exec-path-from-shell rspec-mode try diff-hl dotenv-mode multiple-cursors treemacs-magit yaml-mode move-text projectile-rails treemacs-projectile which-key projectile lsp-mode mentor whitespace-cleanup-mode magit smartparens company-ctags company ivy elixir-mode eglot)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -28,7 +28,13 @@
 (setq ring-bell-function 'ignore)
 
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
 
+;; UI
+(use-package darktooth-theme
+  :ensure t
+  :init
+  (load-theme 'darktooth t))
 
 ;; Bind global keymap
 (global-set-key (kbd "M-;") 'comment-line)
