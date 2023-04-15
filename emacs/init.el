@@ -13,7 +13,7 @@
  ;; If there is more than one, they won't work right.
  '(global-visual-line-mode t)
  '(package-selected-packages
-   '(bundler exec-path-from-shell rspec-mode try diff-hl dotenv-mode multiple-cursors treemacs-magit yaml-mode move-text projectile-rails treemacs-projectile which-key projectile lsp-mode mentor whitespace-cleanup-mode magit smartparens company-ctags company ivy elixir-mode eglot)))
+   '(projectile-phoenix quelpa-use-package use-package-quelpa comment-dwim-2 bundler exec-path-from-shell rspec-mode try diff-hl dotenv-mode multiple-cursors treemacs-magit yaml-mode move-text projectile-rails treemacs-projectile which-key projectile lsp-mode mentor whitespace-cleanup-mode magit smartparens company-ctags company ivy elixir-mode eglot)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -30,6 +30,10 @@
 (tool-bar-mode -1)
 
 
+;; Bind global keymap
+(global-set-key (kbd "M-;") 'comment-line)
+
+
 ;; Disable extra files
 (setq make-backup-files         nil) ; Don't want any backup files
 (setq auto-save-list-file-name  nil) ; Don't want any .saves files
@@ -37,9 +41,10 @@
 (setq require-final-newline t)
 
 ;; Clear Whitespace
-(require 'whitespace-cleanup-mode)
-(global-whitespace-cleanup-mode)
-(add-hook 'before-save-hook 'whitespace-cleanup)
+(use-package whitespace-cleanup-mode
+  :ensure t
+  :hook (before-save . whitespace-cleanup)
+  :config (global-whitespace-cleanup-mode))
 
 ;; Ido
 (setq ido-enable-flex-matching t)
@@ -52,7 +57,8 @@
   :config
   (when (memq window-system '(mac ns x))
     (setq exec-path-from-shell-shell-name "/bin/zsh")
-    (exec-path-from-shell-initialize)))
+    (exec-path-from-shell-initialize))
+    (exec-path-from-shell-copy-env "CHATGPT_KEY"))
 
 ;; Autocomplete
 (use-package company
@@ -66,8 +72,7 @@
   :ensure smartparens
   :hook (prog-mode text-mode markdown-mode)
   :init
-  (require 'smartparens-config)
-)
+  (require 'smartparens-config))
 
 ;; LSP
 (require 'lsp-mode)
@@ -103,7 +108,6 @@
   :config
   (projectile-rails-global-mode))
 
-
 (use-package rspec-mode
   :ensure t
   :init
@@ -115,6 +119,18 @@
 
 (use-package bundler
   :ensure t)
+
+;; Elixir
+(use-package quelpa-use-package
+  :ensure t)
+
+(use-package projectile-phoenix
+  :ensure t
+  :after projectile
+  :bind-keymap
+  ("C-c e" . projectile-phoenix-command-map)
+  :quelpa (projectile-phoenix :fetcher github :repo "Auralcat/projectile-phoenix"))
+
 
 (use-package which-key
   :ensure t
@@ -165,3 +181,8 @@
 
 (use-package try
   :ensure t)
+
+(use-package gptel
+  :ensure t
+  :config
+  (setq gptel-api-key (getenv "CHATGPT_KEY")))
