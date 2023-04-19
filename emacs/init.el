@@ -25,7 +25,10 @@
 (require 'use-package)
 (global-set-key [remap list-buffers] 'ibuffer)
 (global-display-line-numbers-mode t)
+
 (global-display-fill-column-indicator-mode 1)
+(setq-default display-fill-column-indicator-column 120)
+
 (setq ring-bell-function 'ignore)
 
 (tool-bar-mode -1)
