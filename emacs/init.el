@@ -29,12 +29,16 @@
 
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(global-auto-revert-mode t)
 
 ;; UI
-(use-package darktooth-theme
+(use-package doom-themes
   :ensure t
-  :init
-  (load-theme 'darktooth t))
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+	doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-opera t))
 
 ;; Bind global keymap
 (global-set-key (kbd "M-;") 'comment-line)
@@ -125,6 +129,8 @@
 
 (use-package bundler
   :ensure t)
+
+(add-hook 'after-init-hook 'inf-ruby-switch-setup)
 
 ;; Elixir
 (use-package quelpa-use-package
