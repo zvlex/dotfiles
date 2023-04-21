@@ -203,3 +203,9 @@
   :ensure t
   :config
   (setq gptel-api-key (getenv "CHATGPT_KEY")))
+
+(use-package yafolding
+  :ensure t
+  :hook (prog-mode . yafolding-mode)
+  :bind (("C-x j" . yafolding-toggle-element)
+	 ("C-x J" . yafolding-toggle-all)))
