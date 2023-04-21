@@ -135,6 +135,7 @@
   :ensure t)
 
 (add-hook 'after-init-hook 'inf-ruby-switch-setup)
+(add-hook 'compilation-filter-hook 'inf-ruby-auto-enter) ;; auto enter binding.pry in rspec mode
 
 ;; Elixir
 (use-package quelpa-use-package
