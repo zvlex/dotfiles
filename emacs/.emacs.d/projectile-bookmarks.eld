@@ -1,1 +1,0 @@
-("~/Work/course/vac_booking_system/" "~/Work/projects/vabaco_supply_chain/" "~/Work/course/tmp/my_vac/" "~/Dev/projects/elixir_projects/nbg_exrp/")
