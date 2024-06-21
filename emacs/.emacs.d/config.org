@@ -46,6 +46,7 @@
   - [[#racket][Racket]]
   - [[#yaml][Yaml]]
   - [[#web][Web]]
+  - [[#markdown][Markdown]]
 - [[#books-readers][Books Readers]]
 
 * Global
@@ -158,6 +159,7 @@ Use icons
 ** Enable table of contents
 #+begin_src emacs-lisp
   (use-package toc-org
+    :ensure t
     :commands toc-org-enable
     :init (add-hook 'org-mode-hook 'toc-org-enable))
   (setq toc-org-max-depth 3)
@@ -190,7 +192,6 @@ Use icons
     (diff-hl-flydiff-mode +1)
     (diff-hl-margin-mode +1))
 #+end_src
-
 
 * Navigation
 ** Dashboard
@@ -491,6 +492,12 @@ Emmet
                 ("C-c j" . emmet-expand-line))
     :config
     )
+#+end_src
+
+** Markdown
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :ensure t)
 #+end_src
 
 * Books Readers
