@@ -15,6 +15,7 @@
   - [[#encoding][Encoding]]
   - [[#on-save][On save]]
   - [[#icons][Icons]]
+  - [[#symlinks][Symlinks]]
 - [[#org-mode][Org Mode]]
   - [[#enable-table-of-contents][Enable table of contents]]
   - [[#enable-org-bullets][Enable Org Bullets]]
@@ -152,6 +153,13 @@ Use icons
   (defvar mode-icons--eol-construct
     '(:eval (mode-line-eol-desc))
     "End of Line Construct.")
+#+end_src
+
+** Symlinks
+Follow created by stown symlink
+
+#+begin_src emacs-lisp
+  (setq vc-follow-symlinks t)
 #+end_src
 
 * Org Mode
