@@ -39,6 +39,8 @@
   - [[#help-with-keys-default-in-emacs-30][Help with keys (default in Emacs 30)]]
   - [[#try-any-package][Try any package]]
   - [[#shell-and-path][Shell and PATH]]
+    - [[#eshell][Eshell]]
+    - [[#shell][Shell]]
 - [[#programming][Programming]]
   - [[#ruby][Ruby]]
   - [[#elixir][Elixir]]
@@ -128,9 +130,13 @@ Set UTF-8 by default
 Use icons
 
 #+begin_src emacs-lisp
-  ;; (use-package all-the-icons
-  ;;   :if (display-graphic-p))
-  ;; (setq all-the-icons-scale-factor 0.8)
+  (use-package all-the-icons
+    :if (display-graphic-p))
+  (setq all-the-icons-scale-factor 0.75)
+
+  (use-package all-the-icons-dired
+    :ensure t
+    :hook (dired-mode . all-the-icons-dired-mode))
 #+end_src
 
 #+begin_src emacs-lisp
@@ -339,6 +345,27 @@ CamelCase, snake_case
 #+end_src
 
 ** Shell and PATH
+
+*** Eshell
+#+begin_src emacs-lisp
+  (use-package eshell-syntax-highlighting
+    :ensure t
+    :defer t
+    :hook (eshell-mode . eshell-syntax-highlighting-mode)
+    :config
+    (eshell-syntax-highlighting-global-mode +1))
+
+  (setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
+        eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
+        eshell-history-size 5000
+        eshell-buffer-maximum-lines 5000
+        eshell-hist-ignoredups t
+        eshell-scroll-to-bottom-on-input t
+        eshell-destroy-buffer-when-process-dies t
+        eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
+#+end_src
+
+*** Shell
 #+begin_src emacs-lisp
   (use-package exec-path-from-shell
     :ensure t
