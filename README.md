@@ -10,6 +10,7 @@ sudo dnf install git stow emacs neovim vim
 ### Install:
 ```bash
 git clone git@github.com:zvlex/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
 ```
 
 ### Usage:
@@ -17,5 +18,9 @@ git clone git@github.com:zvlex/dotfiles.git ~/.dotfiles
 Will symlink config files
 
 ```bash
+# Emacs
 stow emacs
+
+# Neovim
+stow nvim
 ```
