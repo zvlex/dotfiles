@@ -16,7 +16,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(markdown-mode org-bullets toc-org yaml-mode whitespace-cleanup-mode which-key web-mode try string-inflection smartparens rspec-mode racket-mode projectile-rails pgmacs pg-el pg pdf-tools nov neotree multiple-cursors move-text mode-icons mix magit go-mode exec-path-from-shell erlang emmet-mode elixir-ts-mode elixir-mode diff-hl dashboard company comment-dwim-2 bundler ample-theme all-the-icons)))
+   '(all-the-icons-dired ample-theme bundler comment-dwim-2 company
+			 dashboard diff-hl elixir-mode emmet-mode
+			 erlang eshell-syntax-highlighting
+			 exec-path-from-shell go-mode magit
+			 markdown-mode mix mode-icons move-text
+			 multiple-cursors neotree nov org-bullets
+			 pdf-tools projectile-rails racket-mode
+			 rspec-mode smartparens string-inflection
+			 toc-org try web-mode whitespace-cleanup-mode
+			 yaml-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
